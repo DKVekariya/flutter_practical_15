@@ -1,12 +1,7 @@
-import 'dart:convert';
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_practical_15/ui/home_screen_view_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:http/http.dart';
-import 'package:riverpod/riverpod.dart';
-import '../data/api_service.dart';
-import '../data/models/university.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -45,7 +40,7 @@ class HomeScreen extends ConsumerWidget {
                   child: Icon(
                     Icons.school_rounded,
                     size: 64,
-                    color: Colors.white.withOpacity(0.7),
+                    color: Colors.white.withValues(alpha: 0.7),
                   ),
                 ),
               ),
@@ -82,6 +77,7 @@ class HomeScreen extends ConsumerWidget {
                         showPhoneCode: false,
                         onSelect: (Country country) {
                           ref.read(homeViewStateNotifier.notifier).fetchUniversities(country.name);
+                          ref.read(homeViewStateNotifier.notifier).setSelectedCountry(country.name);
                         },
                       );
                     },
@@ -92,7 +88,7 @@ class HomeScreen extends ConsumerWidget {
                         borderRadius: BorderRadius.circular(12),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withOpacity(0.05),
+                            color: Colors.black.withValues(alpha: 0.05),
                             blurRadius: 10,
                             offset: const Offset(0, 4),
                           ),
@@ -141,7 +137,7 @@ class HomeScreen extends ConsumerWidget {
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withOpacity(0.05),
+                          color: Colors.black.withValues(alpha: 0.05),
                           blurRadius: 10,
                           offset: const Offset(0, 4),
                         ),
